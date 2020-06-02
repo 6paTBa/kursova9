@@ -14,7 +14,13 @@ void length_of_roads(graph *graph_prot)
 }
 
 int extract_min(graph *graph_prot, int source, int *seen) {
-    
+    int min = 32767;
+    for(int i = 0; i < graph_prot->nvertices; i++) {
+        if((i != source) && (seen[i] != 1) && 
+            (graph_prot->roads[source][i] != 0) && (graph_prot->roads[source][i] < min)) {
+                return i;
+        }
+    }
 }
 
 uint16_t shortest_way(graph *graph_prot, int start, int finish)
@@ -30,7 +36,6 @@ uint16_t shortest_way(graph *graph_prot, int start, int finish)
         prev[i] = -1;
     }
     d[start] = 0;
-
 }
 
 uint16_t longest_way(graph *graph_prot, int start, int finish)
