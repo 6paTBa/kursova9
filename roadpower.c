@@ -41,7 +41,24 @@ uint16_t shortest_way(graph *graph_prot, int start, int finish)
     for(int i = 0; i < max; i++) {
         v = extract_min(graph_prot, start, seen);
         seen[v] = 1;
+        d[v] = graph_prot->roads[start][v];
+
+        for(int j = 0; j < max; j++) {
+            if(graph_prot->roads[v][j] != 0) {
+                if(graph_prot->roads[start][j] != 0) {
+                    d[j] = graph_prot->roads[start][j];
+                    if(d[v] + graph_prot[v][j] < d[j]) {
+                        d[j] = d[v] + graph_prot[v][j];
+                        prev[j] = v;
+                    }
+                } else {
+                    d[j] = d[v] + graph_prot[v][j];
+                    prev[j] = v;
+                }
+            }
+        }
     }
+    return d[finish];
 }
 
 uint16_t longest_way(graph *graph_prot, int start, int finish)
