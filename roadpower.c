@@ -25,17 +25,23 @@ int extract_min(graph *graph_prot, int source, int *seen) {
 
 uint16_t shortest_way(graph *graph_prot, int start, int finish)
 {
+    int max = graph_prot->nvertices, v;
     int *d = malloc(sizeof(int) * graph_prot->nvertices);
     int *seen = calloc(graph_prot->nvertices, sizeof(int));
     int *prev = malloc(sizeof(int) * graph_prot->nvertices);
 
-    for(int i = 0; i < graph_prot->nvertices; i++) {
+    for(int i = 0; i < max; i++) {
         if(i != start) {
             d[i] = 32767;
         }
         prev[i] = -1;
     }
     d[start] = 0;
+
+    for(int i = 0; i < max; i++) {
+        v = extract_min(graph_prot, start, seen);
+        seen[v] = 1;
+    }
 }
 
 uint16_t longest_way(graph *graph_prot, int start, int finish)
