@@ -14,6 +14,7 @@
 
 int check_if_true(graph *graph_prot, char *name);
 void length_of_roads(graph *graph_prot);
+int extract_min(graph *graph_prot, int source, int *seen);
 uint16_t shortest_way(graph *graph_prot, int start, int finish);
 uint16_t longest_way(graph *graph_prot, int start, int finish);
 uint16_t num_of_all_roads(graph *graph_prot, int start, int finish);
