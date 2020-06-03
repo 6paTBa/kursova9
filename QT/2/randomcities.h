@@ -4,8 +4,11 @@
 
 class RandomCities
 {
+private:
+    char* rndCities;
 public:
-    RandomCities();
+    RandomCities(int countcities);
+    char* getRndCities();
 };
 
 #endif // RANDOMCITIES_H

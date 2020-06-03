@@ -26,10 +26,14 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    alg1.cpp \
+    randomcities.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    alg1.h \
+    randomcities.h
 
 FORMS += \
         mainwindow.ui

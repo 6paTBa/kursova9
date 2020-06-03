@@ -20,7 +20,7 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_shortest_way_bttn_clicked()
 {
-
+   ui->result1->setText(ui->num_of_cities->text());
 }
 
 void MainWindow::on_shortest_way_start_selectionChanged()
