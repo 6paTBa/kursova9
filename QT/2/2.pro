@@ -27,12 +27,11 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    alg1.cpp \
-    randomcities.cpp
+    randomcities.cpp \
+    shortesttway.cpp
 
 HEADERS += \
         mainwindow.h \
-    alg1.h \
     randomcities.h
 
 FORMS += \
