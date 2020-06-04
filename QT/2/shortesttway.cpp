@@ -4,49 +4,35 @@
 
 using namespace std;
 
-void printPath(int* distance, int* previous, int startVertex, int queryVertex);
+int** createMatrix(int vertexNumber)
+{
+    int **matrix;
 
-int shortestway(int startVertex, int queryVertex){
-    // ifstream graph; //input file stream
-    // graph.open("ShortestPathAlgorithm_Input.txt");
-    //graph.open(argv[1]);
+    matrix = new int* [vertexNumber];
+    for(int i = 0; i < vertexNumber; i++)
+        matrix[i] = new int [vertexNumber];
 
-    // if(!graph.is_open()){   //when file is not found
-    //     cout << "File name is wrong!\n";
-    //     return 0;
-    // }
+    for(int i = 0; i < vertexNumber; i++)   //taking the input
+        for(int j = 0; j < vertexNumber; j++)
+            if(i == j)
+                matrix[i][j] = 0;
+            else
+                matrix[i][j] = -1;
+    int temp;
+    for(int i = 0; i < vertexNumber; i++)   //taking the input
+        for(int j = 0; j < vertexNumber; j++)
+            if(i != j && (matrix[i][j] == -1 || matrix[j][i] == -1)) {
+                temp = rand() % 9;
+                matrix[i][j] = temp;
+                matrix[j][i] = temp;
+            }
 
-    // graph >> vertexNumber;
-//    int **matrix;
-//    matrix = new int* [vertexNumber];
-//    for(int i=0; i<vertexNumber; i++)
-//        matrix[i] = new int [vertexNumber];
-    const int vertexNumber = 5;
-    int matrix[vertexNumber][vertexNumber] = {
-    { 0, 1, 2, 0, 0 },
-    { 1, 0, 0, 1, 0 },
-    { 2, 0, 0, 1, 0 },
-    { 0, 1, 1, 0, 1 },
-    { 0, 0, 0, 1, 0 },
-};
-
-
-    // for(int i=0; i<vertexNumber; i++)   //taking the input
-    //     for(int j=0; j<vertexNumber; j++)
-    //         if(i == j)
-    //             matrix[i][j] = 0;
-    //         else
-    //             matrix[i][j]= 1 + rand() % 10;
+    return matrix;
+}
 
 
-    /*/for(int i=0; i<vertexNumber; i++){  //output of the input file
-        for(int j=0; j<vertexNumber; j++)
-            cout << matrix[i][j] << " ";
-
-        cout << endl;
-    }/**/
-
-
+int shortestway(int **matrix, int vertexNumber, int startVertex, int queryVertex)
+{
     int *previous = new int [vertexNumber],  //the previous vertex
         *distance = new int [vertexNumber];      //distance of the vertex
 
@@ -56,12 +42,8 @@ int shortestway(int startVertex, int queryVertex){
         distance[i] = -10;   //initializing with a value that won't come after the program is run
     }
 
-//    int startVertex;    //taking input from the user as [1-5] & making it as [1-4]
-//    cout << "# Enter the starting vertex[1-" << vertexNumber << "]: ";
-//	cin >> startVertex;
     startVertex = startVertex-1;
 
-    ///Start of SPA
     queue<int> SPAQueue;
     SPAQueue.push(startVertex);
 
@@ -80,44 +62,15 @@ int shortestway(int startVertex, int queryVertex){
                 }
     }
 
-    /*/cout << endl;
-    for(int i=0; i<vertexNumber; i++)   //output of the SPA
-        cout << distance[i] << "\t" << previous[i]+1 << "\n";
-    cout << endl;/**/
-
-//    int queryVertex;
-//    cout << "# Enter the query vertex[1-" << vertexNumber << "]: ";
-//	cin >> queryVertex;
     queryVertex = queryVertex-1;
     int outputDistance = distance[queryVertex];
-//    cout << "\n\nThe distance is: " << distance[queryVertex];
 
-//    cout << "\nThe Path is: \n";
-//	printPath(distance, previous, startVertex, queryVertex);
-
-
-    // for(int i=0; i<vertexNumber; i++)   //delete the matrix
-    //     delete[] matrix[i];
-    // delete[] matrix;
+    //    for(int i=0; i<vertexNumber; i++)   //delete the matrix
+    //        delete[] matrix[i];
+    //    delete[] matrix;
 
     delete[] distance;
     delete[] previous;
 
-    // graph.close();  //close the file graph
-
     return outputDistance;
 }
-
-
-//void printPath(int* distance, int* previous, int startVertex, int queryVertex)
-//{
-//	if(startVertex==queryVertex)
-//		cout << "\t\t" << queryVertex+1 << endl;
-//	else if (previous[queryVertex]==-1)
-//		cout << "There is no path!\n";
-//	else{
-//		printPath(distance, previous, startVertex, previous[queryVertex]); //recursion
-//		cout << "\t\t" << queryVertex+1 << endl; //printing each vertex
-//	}
-//}
-

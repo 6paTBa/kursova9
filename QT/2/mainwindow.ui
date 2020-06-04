@@ -32,7 +32,7 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>10</x>
       <y>10</y>
       <width>161</width>
       <height>31</height>
@@ -237,27 +237,14 @@
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>60</y>
-      <width>231</width>
+      <x>530</x>
+      <y>20</y>
+      <width>161</width>
       <height>17</height>
      </rect>
     </property>
     <property name="text">
-     <string>Место для матрицы смежности:</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_9">
-    <property name="geometry">
-     <rect>
-      <x>490</x>
-      <y>60</y>
-      <width>291</width>
-      <height>17</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Место для графического вывода графа:</string>
+     <string>Матрицы смежности:</string>
     </property>
    </widget>
    <widget class="QLabel" name="result1">
@@ -297,6 +284,42 @@
     </property>
     <property name="text">
      <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="matrixLabel">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>50</y>
+      <width>231</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="create_matrix_btn">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>20</y>
+      <width>89</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Создать</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="plainTextEdit">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>50</y>
+      <width>361</width>
+      <height>161</height>
+     </rect>
     </property>
    </widget>
   </widget>

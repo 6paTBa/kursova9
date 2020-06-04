@@ -22,6 +22,8 @@ private slots:
 
     void on_shortest_way_start_selectionChanged();
 
+    void on_create_matrix_btn_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
