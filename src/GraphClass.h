@@ -65,11 +65,34 @@ template <typename ident_type, typename price_type> class Graph
             return true;
         }
         
-        pair<edge_iterator, pair<price_iterator, bool>> add_oriented(ident_type, ident_type, price_type);
+        pair<edge_iterator, pair<price_iterator, bool>> add_oriented(ident_type ident1, ident_type ident2, price_type price){
+            pair<edge_iterator, pair<price_iterator, bool>> result;
+
+            /* дополнить */
+
+            return result;
+        }
         //ориентированное добавление узла
-        pair<edge_iterator, pair<price_iterator, bool>> add_unoriented(ident_type, ident_type, price_type);
+        pair<edge_iterator, pair<price_iterator, bool>> add_unoriented(ident_type ident1, ident_type ident2, price_type price){
+            auto result = add_oriented(ident1, ident2, price);
+            if(!result.second.second)
+                return result;
+            result = add_oriented(ident2, ident1, price);
+            return result;
+        }
         //неориентированное добавление узла
-        price_type root_price(list<ident_type>&);
+        price_type root_price(list<ident_type>& route){
+            price_type total_price = 0;
+            
+            for(auto it = route.begin(); it != --route.end(); it++){
+                auto to_it = it;
+                to_it++;
+                assert(is_exist(*it, *to_it) && "EDGE DOES NOT EXIST IN GRAPH");
+                total_price += graph[*it][*to_it];
+            }
+
+            return total_price;
+        }
         //возвращает длинну всего маршрута заданного списком 
 
         //переопределить возвращаемые функциями значения
