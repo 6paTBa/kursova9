@@ -27,6 +27,17 @@ template <typename ident_type, typename price_type> class Graph
     public:
         Graph():graph(){}
 
+        Graph(Graph& another_Graph) : graph(another_Graph.graph){}
+
+        Graph& operator==(Graph& another_Graph)
+		{graph = another_Graph.graph; return *this;}
+
+		price_hash& operator[](ident_type ident)
+		{return graph.at(ident);}
+        
+		const price_hash& operator[](ident_type ident) const
+		{return (const price_hash&)graph.at(ident);}
+
         edge_iterator begin(){
             return graph.begin();
         }
@@ -72,7 +83,7 @@ template <typename ident_type, typename price_type> class Graph
 
             return result;
         }
-        //ориентированное добавление узла
+
         pair<edge_iterator, pair<price_iterator, bool>> add_unoriented(ident_type ident1, ident_type ident2, price_type price){
             auto result = add_oriented(ident1, ident2, price);
             if(!result.second.second)
@@ -80,7 +91,7 @@ template <typename ident_type, typename price_type> class Graph
             result = add_oriented(ident2, ident1, price);
             return result;
         }
-        //неориентированное добавление узла
+
         price_type root_price(list<ident_type>& route){
             price_type total_price = 0;
             
@@ -93,9 +104,6 @@ template <typename ident_type, typename price_type> class Graph
 
             return total_price;
         }
-        //возвращает длинну всего маршрута заданного списком 
-
-        //переопределить возвращаемые функциями значения
 };
 
 //добавить функции поиска кратчайшего, длиннейшего маршрутов
