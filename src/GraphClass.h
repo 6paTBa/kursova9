@@ -118,6 +118,7 @@ vector<list<ident_type>> find_possible_routes(
 	ident_type from, 
 	ident_type to); // поиск всех путей
 
-//и функцию вывода графа
+template <typename ident_type, typename price_type> 
+void print_graph(Graph<ident_type, price_type>& graph, ostream& out);
 
 #endif
