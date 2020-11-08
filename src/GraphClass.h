@@ -106,8 +106,18 @@ template <typename ident_type, typename price_type> class Graph
         }
 };
 
-//добавить функции поиска кратчайшего, длиннейшего маршрутов
-//общего числа маршрутов
+template <typename ident_type, typename price_type> 
+list<ident_type> find_shortest_route(
+	const Graph<ident_type, price_type>& graph,
+	ident_type from, 
+	ident_type to); //будем находить кратчайший путь между точками
+
+template <typename ident_type, typename price_type> 
+vector<list<ident_type>> find_possible_routes(
+	Graph<ident_type, price_type>& graph,
+	ident_type from, 
+	ident_type to); // поиск всех путей
+
 //и функцию вывода графа
 
 #endif
