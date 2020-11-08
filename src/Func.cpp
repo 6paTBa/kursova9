@@ -1,5 +1,25 @@
 #include "GraphClass.h"
 
+template <typename ident_type, typename price_type> list<ident_type> find_shortest_route(const Graph<ident_type, price_type>& graph, ident_type from, ident_type to)
+{
+    list<ident_type> route;
+	if(from == to)
+	{
+		route.push_front(to);
+		return route;
+	}
+
+    typename Graph<ident_type, price_type>::price_hash cur_prices = graph[from];
+	typename Graph<ident_type, price_type>::price_iterator cur_min = cur_prices.begin();
+
+    unordered_set<ident_type> visited;
+	visited.insert(from);
+
+    while(!cur_prices.empty())
+    {  
+    }
+}
+
 template <typename ident_type, typename price_type> 
 vector<list<ident_type>> find_possible_routes(Graph<ident_type, price_type>& graph, ident_type from, ident_type to)
 {
