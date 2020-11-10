@@ -3,7 +3,7 @@
 BIN_DIR = ./bin
 BUILD_DIR = ./build
 SRC_DIR = ./src
-FLAGS =-Wall
+FLAGS =-Wall -Werror
 
 all: $(BIN_DIR)/main
 
