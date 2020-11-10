@@ -78,8 +78,19 @@ template <typename ident_type, typename price_type> class Graph
         
         pair<edge_iterator, pair<price_iterator, bool>> add_oriented(ident_type ident1, ident_type ident2, price_type price){
             pair<edge_iterator, pair<price_iterator, bool>> result;
+            result.first = graph.find(ident_1);
 
-            /* дополнить */
+			if(result.first != graph.end()){
+				result.second =
+					result.first->second.insert(make_pair(ident_2, price));
+				if(!result.second.second)
+					return result;
+			} else {
+				auto new_edge = make_pair(ident_1, unordered_map<ident_type, price_type>());
+				result.first = graph.insert(new_edge).first;
+				result.second = result.first->second.insert(make_pair(ident_2, price));
+			}
+			graph.insert(make_pair(ident_2, unordered_map<ident_type, price_type>()));
 
             return result;
         }
@@ -110,13 +121,13 @@ template <typename ident_type, typename price_type>
 list<ident_type> find_shortest_route(
 	const Graph<ident_type, price_type>& graph,
 	ident_type from, 
-	ident_type to); //будем находить кратчайший путь между точками
+	ident_type to);
 
 template <typename ident_type, typename price_type> 
 vector<list<ident_type>> find_possible_routes(
 	Graph<ident_type, price_type>& graph,
 	ident_type from, 
-	ident_type to); // поиск всех путей
+	ident_type to);
 
 //и функцию вывода графа
 
