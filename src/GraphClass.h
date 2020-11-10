@@ -41,7 +41,7 @@ template <typename ident_type, typename price_type> class Graph
         edge_iterator begin(){
             return graph.begin();
         }
-		cedge_iterator begin(){
+		cedge_iterator begin() const{
             return graph.cbegin();
         }
 		edge_iterator end(){
@@ -78,19 +78,19 @@ template <typename ident_type, typename price_type> class Graph
         
         pair<edge_iterator, pair<price_iterator, bool>> add_oriented(ident_type ident1, ident_type ident2, price_type price){
             pair<edge_iterator, pair<price_iterator, bool>> result;
-            result.first = graph.find(ident_1);
+            result.first = graph.find(ident1);
 
 			if(result.first != graph.end()){
 				result.second =
-					result.first->second.insert(make_pair(ident_2, price));
+					result.first->second.insert(make_pair(ident2, price));
 				if(!result.second.second)
 					return result;
 			} else {
-				auto new_edge = make_pair(ident_1, unordered_map<ident_type, price_type>());
+				auto new_edge = make_pair(ident1, unordered_map<ident_type, price_type>());
 				result.first = graph.insert(new_edge).first;
-				result.second = result.first->second.insert(make_pair(ident_2, price));
+				result.second = result.first->second.insert(make_pair(ident2, price));
 			}
-			graph.insert(make_pair(ident_2, unordered_map<ident_type, price_type>()));
+			graph.insert(make_pair(ident2, unordered_map<ident_type, price_type>()));
 
             return result;
         }
