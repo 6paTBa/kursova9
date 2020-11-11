@@ -187,7 +187,36 @@ int main()
 				
 			continue;
 		}
-		else if(cur_comand == "all") {}
+		else if(cur_comand == "all") 
+		{
+			if(total_args < 2)
+			{
+				cerr << "Too few arguments for \"all\"" << endl;
+				continue;
+			}
+			string name_1, name_2;
+			s_strm >> name_1 >> name_2;
+			if(!graph.is_exist(name_1) | !graph.is_exist(name_2))
+			{
+				cerr << "No such nodes: ";
+				if(!graph.is_exist(name_1))
+					cerr << name_1 << " ";
+				if(!graph.is_exist(name_2))
+					cerr << name_2 << " ";
+				cerr << endl;
+				continue;
+			}
+			auto all = find_possible_routes(graph, name_1, name_2);
+			cout << "There are " << all.size() << " possible routes:" << endl;
+			for(auto& route : all)
+			{
+				for(auto it = route.begin(); it != route.end(); it++)
+					cout << *it << "->";
+				cout << endl;
+			}
+			
+			continue;
+		}
 		else if(cur_comand == "print") 
 			{
 				print_graph(graph, cout); cout << endl;
