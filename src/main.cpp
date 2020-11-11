@@ -15,6 +15,19 @@ int main()
 
 	while(true)
 	{
+		cout << "ENTER THE COMMAND:" << endl;
+		string cur_comand;
+		getline(cin, cur_comand, '\n'); 
+		if(cur_comand.size() == 0) continue;
+		size_t pos = 0;
+		size_t total_args = 0;
+		while((pos = cur_comand.find(' ', pos)) != string::npos)
+		{
+			total_args++;
+			pos++;
+		}
+		stringstream s_strm(cur_comand); 
+		s_strm >> cur_comand;
 		if(cur_comand == "add") 
 		{
 			if(total_args < 3)
@@ -112,7 +125,41 @@ int main()
 			
 			continue;
 		}
-		else if(cur_comand == "longest") {}
+		else if(cur_comand == "longest") 
+		{
+			if(total_args < 2)
+			{
+				cerr << "Too few arguments for \"longest\"" << endl;
+				continue;
+			}
+			string name_1, name_2;
+			s_strm >> name_1 >> name_2;
+			if(!graph.is_exist(name_1) | !graph.is_exist(name_2)) 
+			{
+				cerr << "No such nodes: ";
+				if(!graph.is_exist(name_1))
+					cerr << name_1 << " ";
+				if(!graph.is_exist(name_2))
+					cerr << name_2 << " ";
+				cerr << endl;
+				continue;
+			}
+			auto all = find_possible_routes(graph, name_1, name_2);
+			size_t max_route = 0;
+			uint max_price = 0;
+			for(size_t i = 0; i < all.size(); i++)
+			{
+				uint cur_price = graph.route_price(all[i]);
+				if(cur_price > max_price)
+				{max_price = cur_price; max_route = i;}
+			}
+			cout << "Longest route price = " << max_price << endl;
+			for(auto it = all[max_route].begin(); it != all[max_route].end(); it++)
+					cout << *it << "->";
+				cout << endl;
+				
+			continue;
+		}
 		else if(cur_comand == "shortest") {}
 		else if(cur_comand == "all") {}
 		else if(cur_comand == "print") 
