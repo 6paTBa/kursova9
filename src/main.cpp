@@ -160,7 +160,33 @@ int main()
 				
 			continue;
 		}
-		else if(cur_comand == "shortest") {}
+		else if(cur_comand == "shortest") 
+		{
+			if(total_args < 2)
+			{
+				cerr << "Too few arguments for \"shortest\"" << endl;
+				continue;
+			}
+			string name_1, name_2;
+			s_strm >> name_1 >> name_2;
+			if(!graph.is_exist(name_1) | !graph.is_exist(name_2))
+			{
+				cerr << "No such nodes: ";
+				if(!graph.is_exist(name_1))
+					cerr << name_1 << "; ";
+				if(!graph.is_exist(name_2))
+					cerr << name_2 << ";";
+				cerr << endl;
+				continue;
+			}
+			auto shortest = find_shortest_route(graph, name_1, name_2);
+			cout << "Shortest route price = " << graph.route_price(shortest) << endl;
+			for(auto it = shortest.begin(); it != shortest.end(); it++)
+					cout << *it << "->";
+				cout << endl;
+				
+			continue;
+		}
 		else if(cur_comand == "all") {}
 		else if(cur_comand == "print") 
 			{
