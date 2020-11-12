@@ -54,7 +54,6 @@ template <typename ident_type, typename price_type> class Graph
         size_t size(){
             return graph.size();
         }
-        //добавить итераторы и переопределить операторы
 
         bool is_exist(ident_type ident_1){
             auto i_result = graph.find(ident_1);
@@ -83,8 +82,9 @@ template <typename ident_type, typename price_type> class Graph
 			if(result.first != graph.end()){
 				result.second =
 					result.first->second.insert(make_pair(ident2, price));
-				if(!result.second.second)
+				if(!result.second.second){
 					return result;
+                }
 			} else {
 				auto new_edge = make_pair(ident1, unordered_map<ident_type, price_type>());
 				result.first = graph.insert(new_edge).first;
@@ -97,8 +97,9 @@ template <typename ident_type, typename price_type> class Graph
 
         pair<edge_iterator, pair<price_iterator, bool>> add_unoriented(ident_type ident1, ident_type ident2, price_type price){
             auto result = add_oriented(ident1, ident2, price);
-            if(!result.second.second)
+            if(!result.second.second){
                 return result;
+            }
             result = add_oriented(ident2, ident1, price);
             return result;
         }
