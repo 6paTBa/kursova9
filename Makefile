@@ -3,7 +3,7 @@
 BIN_DIR = ./bin
 BUILD_DIR = ./build
 SRC_DIR = ./src
-FLAGS =-Wall -Werror
+FLAGS =-Wall -Werror -std=c++14
 
 all: $(BIN_DIR)/main
 

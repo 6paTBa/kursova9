@@ -4,8 +4,9 @@ template <typename ident_type, typename price_type> list<ident_type>
 find_shortest_route(const Graph<ident_type, price_type>& graph, ident_type from, ident_type to)
 {
 	for(auto& edges : graph){
-		for(auto& prices : edges.second)
+		for(auto& prices : edges.second){
 			assert(prices.second >= 0 && "Shoud be greater than zero");
+		}
 	}
 
     list<ident_type> route;
@@ -28,12 +29,13 @@ find_shortest_route(const Graph<ident_type, price_type>& graph, ident_type from,
     while(!cur_prices.empty()){
 		cur_min = cur_prices.begin();
 		for(auto it = cur_prices.begin(); it != cur_prices.end(); it++){
-			if(it->second < cur_min->second) cur_min = it;
+			if(it->second < cur_min->second){
+				cur_min = it;
+			}
 		}
 		
 		if(cur_min->first == to){
-			while(lead_from.find(to) != lead_from.end())
-			{
+			while(lead_from.find(to) != lead_from.end()){
 				route.push_front(to);
 				to = lead_from[to];
 			}
@@ -91,8 +93,9 @@ vector<list<ident_type>> find_possible_routes(Graph<ident_type, price_type>& gra
 		}
 		if(cur_route.back().first == to){
 			list<ident_type> new_route;
-			for(auto& cur_pair : cur_route)
+			for(auto& cur_pair : cur_route){
 				new_route.push_back(cur_pair.first);
+			}
 			all_routes.push_back(new_route);
 			cur_route.erase(--cur_route.end());
 		} else if(cur_route.back().second == graph[cur_route.back().first].end()){
@@ -100,4 +103,16 @@ vector<list<ident_type>> find_possible_routes(Graph<ident_type, price_type>& gra
 		}
 	}
 	return all_routes;
+}
+
+template <typename ident_type, typename price_type> 
+void print_graph(Graph<ident_type, price_type>& graph, ostream& out) 
+{
+	for(auto edges : graph){
+		out << edges.first << " : ";
+		for(auto& prices : edges.second){
+			out << prices.first << "," << prices.second << " ";
+		}
+		out << endl;
+	}
 }

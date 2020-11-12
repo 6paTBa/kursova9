@@ -1,6 +1,7 @@
 #ifndef GRAPH_CLASS
 #define GRAPG_CLASS
 
+#include <iostream>
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
@@ -104,7 +105,7 @@ template <typename ident_type, typename price_type> class Graph
             return result;
         }
 
-        price_type root_price(list<ident_type>& route){
+        price_type route_price(list<ident_type>& route){
             price_type total_price = 0;
             
             for(auto it = route.begin(); it != --route.end(); it++){
@@ -130,6 +131,7 @@ vector<list<ident_type>> find_possible_routes(
 	ident_type from, 
 	ident_type to);
 
-//и функцию вывода графа
+template <typename ident_type, typename price_type> 
+void print_graph(Graph<ident_type, price_type>& graph, ostream& out);
 
 #endif
