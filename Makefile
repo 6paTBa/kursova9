@@ -7,14 +7,11 @@ FLAGS =-Wall -Werror -std=c++14
 
 all: $(BIN_DIR)/main
 
-$(BIN_DIR)/main: $(BUILD_DIR)/main.o $(BUILD_DIR)/Func.o
-	g++ $(FLAGS) $(BUILD_DIR)/main.o $(BUILD_DIR)/Func.o -o $(BIN_DIR)/main
+$(BIN_DIR)/main: $(BUILD_DIR)/main.o
+	g++ $(FLAGS) $(BUILD_DIR)/main.o -o $(BIN_DIR)/main
 
 $(BUILD_DIR)/main.o:
 	g++ $(FLAGS) -c $(SRC_DIR)/main.cpp -o $(BUILD_DIR)/main.o
-
-$(BUILD_DIR)/Func.o:
-	g++ $(FLAGS) -c $(SRC_DIR)/Func.cpp -o $(BUILD_DIR)/Func.o
 
 run: 
 	./bin/main

@@ -1,4 +1,3 @@
-#include <iostream>
 #include <sstream>
 #include "GraphClass.h"
 
@@ -149,13 +148,15 @@ int main()
 			for(size_t i = 0; i < all.size(); i++)
 			{
 				uint cur_price = graph.route_price(all[i]);
-				if(cur_price > max_price)
-				{max_price = cur_price; max_route = i;}
+				if(cur_price > max_price){
+					max_price = cur_price; 
+					max_route = i;
+				}
 			}
 			cout << "Longest route price = " << max_price << endl;
 			for(auto it = all[max_route].begin(); it != all[max_route].end(); it++)
 					cout << *it << "->";
-				cout << endl;
+			cout << endl;
 				
 			continue;
 		}
