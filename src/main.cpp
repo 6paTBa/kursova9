@@ -9,6 +9,7 @@ int main()
     cout << "longest [name1] [name2]" << endl;
     cout << "shortest [name1] [name2]" << endl;
     cout << "all [name1] [name2]" << endl;
+	cout << "commands" << endl;
     cout << "print" << endl;
     cout << "exit" << endl;
 
@@ -204,6 +205,16 @@ int main()
         } else if (cur_comand == "print") {
             print_graph(graph, cout);
             cout << endl;
+        } else if (cur_comand == "commands") {
+            cout << "COMMANDS:" << endl;
+            cout << "add [u, o] [name1] [name2] [price]" << endl;
+            cout << "longest [name1] [name2]" << endl;
+            cout << "shortest [name1] [name2]" << endl;
+            cout << "all [name1] [name2]" << endl;
+			cout << "commands" << endl;
+            cout << "print" << endl;
+            cout << "exit" << endl;
+
         } else if (cur_comand == "exit") {
             break;
         } else {
