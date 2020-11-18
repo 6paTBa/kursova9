@@ -9,7 +9,7 @@ int main()
     cout << "longest [name1] [name2]" << endl;
     cout << "shortest [name1] [name2]" << endl;
     cout << "all [name1] [name2]" << endl;
-	cout << "commands" << endl;
+    cout << "commands" << endl;
     cout << "print" << endl;
     cout << "exit" << endl;
 
@@ -169,9 +169,9 @@ int main()
                 continue;
             }
             auto shortest = find_shortest_route(graph, name_1, name_2);
-			// clang-format off
+            // clang-format off
             cout << "Shortest route price = " << graph.route_price(shortest) << endl;
-			// clang-format on
+            // clang-format on
             for (auto it = shortest.begin(); it != shortest.end(); it++)
                 cout << *it << "->";
             cout << endl;
@@ -211,7 +211,7 @@ int main()
             cout << "longest [name1] [name2]" << endl;
             cout << "shortest [name1] [name2]" << endl;
             cout << "all [name1] [name2]" << endl;
-			cout << "commands" << endl;
+            cout << "commands" << endl;
             cout << "print" << endl;
             cout << "exit" << endl;
 
