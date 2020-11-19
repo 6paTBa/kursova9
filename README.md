@@ -1,5 +1,5 @@
 # kursova9
-[![Build Status](https://travis-ci.org/6paTBa/kursova9.svg?branch=master)]
+[![Build Status](https://travis-ci.org/6paTBa/kursova9.svg?branch=master)](https://travis-ci.org/6paTBa/kursova9)
 ---
 
 ### Курсовой проект по дисциплине "Технологии разработки программного обеспечения"
@@ -19,3 +19,16 @@ make
 ```
 
 ---
+
+### Запуск программы
+
+```
+make run
+```
+---
+
+### Запуск тестов
+
+```
+make test
+```
