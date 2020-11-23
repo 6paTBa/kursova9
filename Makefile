@@ -1,4 +1,4 @@
-.PHONY: clean all run
+.PHONY: all test clean run
 
 BIN_DIR = ./bin
 BUILD_DIR = ./build
